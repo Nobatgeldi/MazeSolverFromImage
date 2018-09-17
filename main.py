@@ -5,6 +5,7 @@ from FindUGV import Finder
 from CalibrateUAV import Calibrate
 from SolveMaze import Solver
 
+
 # region Logger
 logger = logging.getLogger('teknofest')
 hdlr = logging.FileHandler('teknofest.log')
@@ -16,6 +17,11 @@ logger.setLevel(logging.INFO)
 logging.basicConfig(level=logging.INFO, format="[%(levelname)s]: %(asctime)-15s %(message)s")
 # endregion
 
+
+try:
+    import RPi.GPIO as GPIO
+except:
+    logger.info("Error importing RPi.GPIO!  This is probably because you need superuser privileges.")
 
 if __name__ == '__main__':
 
@@ -32,7 +38,6 @@ if __name__ == '__main__':
     cleaned_image_for_solver = "resim/Calibrate_result.jpg"
     solver = Solver(cleaned_image_for_solver)
     solved = solver.solve()
-
-    for nav in solved:
-        logger.info("NAV: x:{0} y: {1}".format(nav.x, nav.y))
-    print(ugv_postion)
+    GPIO.cleanup()
+    #for nav in solved:
+        #logger.info("NAV: x:{0} y: {1}".format(nav.x, nav.y))

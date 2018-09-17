@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import cv2
 from PIL import Image
 
@@ -52,40 +53,20 @@ class ImageCleaner:
         for i in range(width):
             for j in range(height):
                 r, g, b = image.getpixel((i, j))
-                if r > 100:
-                    if g < 100:
-                        if b < 100:
-                            image.putpixel((i, j), (255, 0, 0))
-
-        # green
-        for i in range(width):
-            for j in range(height):
-                r, g, b = image.getpixel((i, j))
-                if r < 100:
-                    if g > 100:
-                        if b < 100:
-                            image.putpixel((i, j), (0, 255, 0))
-
-        # blue
-        for i in range(width):
-            for j in range(height):
-                r, g, b = image.getpixel((i, j))
-                if r < 100:
-                    if g < 100:
-                        if b > 100:
-                            image.putpixel((i, j), (0, 0, 255))
+                if r > 100 and g < 100 and b < 100:
+                    image.putpixel((i, j), (255, 0, 0))
+                elif r < 100 and g > 100 and b < 100:
+                    image.putpixel((i, j), (0, 255, 0))
+                elif r < 100 and g < 100 and b > 100:
+                    image.putpixel((i, j), (0, 0, 255))
 
         # Process every pixel
         for i in range(width):
             for j in range(height):
                 r, g, b = image.getpixel((i, j))
-                if r > 100:
-                    if g > 100:
-                        if b > 100:
+                if r > 100 and g > 100 and b > 100:
                             image.putpixel((i, j), (255, 255, 255))
-                if r < 100:
-                    if g < 100:
-                        if b < 100:
+                elif r < 100 and g < 100 and b < 100:
                             image.putpixel((i, j), (0, 0, 0))
 
         self.image = image

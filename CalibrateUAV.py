@@ -34,14 +34,14 @@ logger.setLevel(logging.INFO)
 logging.basicConfig(level=logging.INFO, format="[%(levelname)s]: %(asctime)-15s %(message)s")
 # endregion
 
-ROLL_UP = 0
-ROLL_DOWN = 12
+ROLL_UP = 11
+ROLL_DOWN = 19
 
 PITCH_UP = 7
-PITCH_DOWN = 3
+PITCH_DOWN = 15
 
-YAW_UP = 9
-YAW_DOWN = 2
+YAW_UP = 5
+YAW_DOWN = 13
 
 chan_list = (ROLL_UP, ROLL_DOWN, PITCH_UP, PITCH_DOWN, YAW_UP, YAW_DOWN)
 

@@ -93,6 +93,12 @@ class Finder:
         self.x_range = int(self._x_range(self.UGV[0], self.START[0]))
         self.y_range = int(self._y_range(self.UGV[1], self.START[1]))
 
+        if self.UGV[0] > self.START[0]:
+            self.x_range = self.x_range * -1
+
+        if self.UGV[1] < self.START[1]:
+            self.y_range = self.y_range * -1
+
         logger.info("Aradaki mesafe x:{0}cm y: {1}cm".format(self.x_range, self.y_range))
         logger.info("Kara araci baslangic noktasina gonderiliyor...")
 

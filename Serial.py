@@ -17,3 +17,6 @@ class Serial(object):
     def close(self):
         self.sock.close()
 
+    def write_all(self, data):
+        self.sock.sendall(data)
+
