@@ -19,7 +19,7 @@ import os
 import sys
 import math
 import logging
-from Serial import Serial
+from SerialPort import Serial
 from PIL import Image
 from resizeimage import resizeimage
 
@@ -111,8 +111,17 @@ class Finder:
 
         if self.transmitter_state:
             logger.info("Bluethoot baglantisi basladi.")
+            self.send_range()
         else:
-            logger.info("APC220 baglantisi aktiv ediliyor.")
+            logger.info("Baglanti kurulamadi")
+
+    def send_range(self):
+        self.transmitter.write("F")
+        logger.info("Hazir ol komutu gonderildi")
+        self.transmitter.write(str(self.x_range))
+        logger.info("X kordinati gonderildi")
+        self.transmitter.write(str(self.y_range))
+        logger.info("Y kordinati gonderildi")
 
     def _x_range(self, ugv_x, start_x):
         return (start_x - ugv_x)*self.pixel_cm
@@ -171,7 +180,7 @@ class Finder:
         return start
 
     def _init_serial(self):
-        ser = Serial("98:D3:32:70:8B:76")
+        ser = Serial("/dev/rfcomm0")
         return ser
     def ugv_position(self):
         return self.UGV

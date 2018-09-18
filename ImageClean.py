@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import cv2
+import sys
 from PIL import Image
-
 from resizeimage import resizeimage
 
 """ 
@@ -24,21 +24,13 @@ from resizeimage import resizeimage
 class ImageCleaner:
     def __init__(self, img, output):
 
-        """cap = cv2.VideoCapture(0)
-
-        while(True):
-            ret, frame = cap.read()
-            rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2BGRA)
-
-            cv2.imshow('frame', rgb)
-
-            if cv2.waitKey(1) & 0xFF == ord('q'):
-                brt = 40
-                frame[frame < 255-brt] += brt
-                out = cv2.imwrite('resim/capture.jpg', frame)
-                break
+        cap = cv2.VideoCapture(0)
+        ret, frame = cap.read()
+        rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2BGRA)
+        cv2.imwrite('resim/capture.jpg', frame)
+        cv2.imshow('frame', rgb)
         cap.release()
-        cv2.destroyAllWindows()"""
+        cv2.destroyAllWindows()
 
         self.image = img
         self.out = output
@@ -75,3 +67,5 @@ class ImageCleaner:
     def result(self):
         return self.image
 
+if __name__ == '__main__':
+    cleaner = ImageCleaner(sys.argv[0], "resim/Finder_result.jpg")
