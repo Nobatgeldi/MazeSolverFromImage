@@ -41,11 +41,11 @@ class Finder:
 
         # region Colors.
         self.COLOR_MAP = {
-            (0,255,0): 'GREEN',
-            (255,0,0): 'RED',
-            (0,0,255): 'BLUE',
-            (255,255,255): 'WHITE',
-            (0,0,0): 'BLACK'
+            (0, 255, 0): 'GREEN',
+            (255, 0, 0): 'RED',
+            (0, 0, 255): 'BLUE',
+            (255, 255, 255): 'WHITE',
+            (0, 0, 0): 'BLACK'
         }
         self.COLOR_RED = (255, 0, 0)
         self.COLOR_GREEN = (0, 255, 0)
@@ -118,9 +118,9 @@ class Finder:
     def send_range(self):
         self.transmitter.write("F")
         logger.info("Hazir ol komutu gonderildi")
-        self.transmitter.write(str(self.x_range))
-        logger.info("X kordinati gonderildi")
         self.transmitter.write(str(self.y_range))
+        logger.info("X kordinati gonderildi")
+        self.transmitter.write(str(self.x_range))
         logger.info("Y kordinati gonderildi")
 
     def _x_range(self, ugv_x, start_x):

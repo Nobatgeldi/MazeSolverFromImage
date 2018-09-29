@@ -1,18 +1,5 @@
 #!/usr/bin/env python2.7
 # -*- coding: utf-8 -*-
-"""
-    Maze Solver
-
-    Usage:
-        python solve.py <maze-image-in>
-
-    Output:
-        An image of the original maze with the solution path drawn in.
-
-    Note:
-        This program relies on colors.
-        For example, assumes explorable space is WHITE and the maze is BLACK.
-"""
 
 import os
 import cv2

@@ -21,6 +21,7 @@ import math
 import time
 import logging
 from Serial import Serial
+from ImageClean import ImageCleaner
 from PIL import Image
 
 # region Logger
@@ -60,11 +61,11 @@ class Calibrate:
 
         # region Colors.
         self.COLOR_MAP = {
-            (0,255,0): 'GREEN',
-            (255,0,0): 'RED',
-            (0,0,255): 'BLUE',
-            (255,255,255): 'WHITE',
-            (0,0,0): 'BLACK'
+            (0, 255, 0): 'GREEN',
+            (255, 0, 0): 'RED',
+            (0, 0, 255): 'BLUE',
+            (255, 255, 255): 'WHITE',
+            (0, 0, 0): 'BLACK'
         }
         self.COLOR_RED = (255, 0, 0)
         self.COLOR_GREEN = (0, 255, 0)
@@ -105,11 +106,18 @@ class Calibrate:
 
         #region kordinates
 
+        cleaner = ImageCleaner("resim/Calibrate_result.jpg")
+        cleaned_image = cleaner.result()
+        self.image = cleaned_image.convert('RGB')
+        self.pixels = self.image.load()
+
         #başlangıç noktasını bul
         try:
             self.START = self._findStart()
+            start_not_found = False
             logger.info("Baslangic kordinat x:{0} y: {1}".format(self.START[0], self.START[1]))
         except:
+            start_not_found = True
             logger.info("Baslangic kordinat bulunamadi")
 
         # bitiş noktasını bul

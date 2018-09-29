@@ -22,17 +22,17 @@ from resizeimage import resizeimage
 
 
 class ImageCleaner:
-    def __init__(self, img, output):
+    def __init__(self, output):
 
         cap = cv2.VideoCapture(0)
         ret, frame = cap.read()
         rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2BGRA)
         cv2.imwrite('resim/capture.jpg', frame)
-        cv2.imshow('frame', rgb)
+        #cv2.imshow('frame', rgb)
         cap.release()
-        cv2.destroyAllWindows()
+        #cv2.destroyAllWindows()
 
-        self.image = img
+        self.image = "resim/capture.jpg"
         self.out = output
         image = Image.open(self.image)
         x, y = image.size
@@ -41,7 +41,7 @@ class ImageCleaner:
         width, height = image.size
         print(width, height)
 
-        # red
+        # red green blue
         for i in range(width):
             for j in range(height):
                 r, g, b = image.getpixel((i, j))
@@ -68,4 +68,4 @@ class ImageCleaner:
         return self.image
 
 if __name__ == '__main__':
-    cleaner = ImageCleaner(sys.argv[0], "resim/Finder_result.jpg")
+    cleaner = ImageCleaner("resim/Finder_result.jpg")
